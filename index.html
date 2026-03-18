@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BREB QR Scanner — Dry Run</title>
+    <meta name="theme-color" content="#0f172a" />
+    <link rel="icon" href="/pwa-192x192.svg" type="image/svg+xml" />
+    <script type="module" crossorigin src="/assets/index-BZg6jxni.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Cdsbsyia.css">
+  <link rel="manifest" href="/manifest.webmanifest"></head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="header-row">
+          <h1>BREB QR Scanner</h1>
+          <div class="lang-toggle">
+            <button id="lang-es" class="lang-btn active" aria-pressed="true">ES</button>
+            <button id="lang-en" class="lang-btn" aria-pressed="false">EN</button>
+          </div>
+        </div>
+        <p class="subtitle" data-i18n="subtitle">
+          Scan a BREB QR code and preview the PaaS API payloads —
+          <strong>no payment is created.</strong>
+        </p>
+      </header>
+
+      <!-- Two-column layout -->
+      <div class="layout-columns">
+
+        <!-- Left column: form + scanner -->
+        <div class="left-col">
+
+          <!-- Step 1: form -->
+          <section class="card" id="form-section">
+            <h2><span class="step-badge">1</span> <span data-i18n="step1Heading">Payment details</span></h2>
+            <p class="hint" data-i18n="step1Hint">
+              Optional — fill these in to see realistic API payloads. You can also
+              scan first and add them later.
+            </p>
+            <div class="field">
+              <label for="customer-id" data-i18n="labelCustomerId">Customer ID</label>
+              <input
+                id="customer-id"
+                type="text"
+                placeholder="00b35adb-c820-4602-ba74-4588c5ec2af1"
+                autocomplete="off"
+                spellcheck="false"
+              />
+            </div>
+            <div class="field">
+              <label for="account-id" data-i18n="labelAccountId">Account ID</label>
+              <input
+                id="account-id"
+                type="text"
+                placeholder="00b35adb-c820-4602-ba74-4588c5ec2af1"
+                autocomplete="off"
+                spellcheck="false"
+              />
+            </div>
+            <div class="actions">
+              <button id="start-btn" class="btn-primary" data-i18n="btnScan">
+                Scan QR Code
+              </button>
+            </div>
+            <div id="error-box" class="error-box" hidden></div>
+          </section>
+
+          <!-- Step 2: camera -->
+          <section class="card" id="scanner-section" hidden>
+            <h2><span class="step-badge">2</span> <span data-i18n="step2Heading">Scan the QR code</span></h2>
+            <div class="scanner-wrap">
+              <video id="preview" muted playsinline autoplay></video>
+              <div class="scanner-frame"></div>
+            </div>
+            <p class="hint" data-i18n="scannerHint">Point the camera at a BREB QR code.</p>
+            <div class="actions">
+              <button id="stop-btn" class="btn-secondary" data-i18n="btnCancel">Cancel</button>
+            </div>
+          </section>
+
+        </div><!-- /left-col -->
+
+        <!-- Right column: results -->
+        <div class="right-col">
+
+          <!-- Step 3: results -->
+          <section class="card" id="results-section" hidden>
+            <h2><span class="step-badge">3</span> <span data-i18n="step3Heading">Prepared API calls</span></h2>
+            <p class="hint" data-i18n="step3Hint">
+              These are the exact request bodies the SDK would send — nothing has
+              been submitted.
+            </p>
+
+            <div class="field">
+              <label for="api-base-url" data-i18n="labelApiBaseUrl">API Base URL</label>
+              <input
+                id="api-base-url"
+                type="url"
+                placeholder="https://api.yourplatform.com"
+                value="https://api.paas.develop.co.passportfintech.com/v1/"
+                autocomplete="off"
+                spellcheck="false"
+              />
+            </div>
+
+            <div class="result-block">
+              <div class="result-header">
+                <span class="tag">Parsed QR</span>
+                <span class="result-title" data-i18n="resultTitleQr">QR code data</span>
+              </div>
+              <pre id="parsed-qr"></pre>
+            </div>
+
+            <div class="result-block">
+              <div class="result-header">
+                <span class="tag post">POST</span>
+                <span class="result-title"><code id="resolve-key-url">/resolve-key</code></span>
+              </div>
+              <p class="result-note" data-i18n="resultNoteResolveKey">
+                Step 1 — resolve the payment key extracted from the QR code. The
+                response returns a <code>resolution_id</code> used in step 2.
+              </p>
+              <pre id="resolve-key-payload"></pre>
+            </div>
+
+            <div class="result-block">
+              <div class="result-header">
+                <span class="tag post">POST</span>
+                <span class="result-title"><code id="create-payment-url">/payments/breb</code></span>
+              </div>
+              <p class="result-note" data-i18n="resultNoteCreatePayment">
+                Step 2 — create the BREB payment. The
+                <code>resolution_id</code> field is filled in at runtime from the
+                previous response.
+              </p>
+              <pre id="create-payment-payload"></pre>
+            </div>
+
+            <div class="actions">
+              <button id="scan-again-btn" class="btn-secondary" data-i18n="btnScanAgain">Scan again</button>
+            </div>
+          </section>
+
+        </div><!-- /right-col -->
+
+      </div><!-- /layout-columns -->
+    </div>
+
+  </body>
+</html>

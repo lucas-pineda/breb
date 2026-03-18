@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192">
+  <rect width="192" height="192" rx="40" fill="#0f172a"/>
+  <g fill="#ffffff">
+    <path d="M54 62c0-4.418 3.582-8 8-8h18c4.418 0 8 3.582 8 8s-3.582 8-8 8H70v10c0 4.418-3.582 8-8 8s-8-3.582-8-8V62zm58 0c0-4.418 3.582-8 8-8h18c4.418 0 8 3.582 8 8v18c0 4.418-3.582 8-8 8s-8-3.582-8-8V70h-10c-4.418 0-8-3.582-8-8zM54 130c0-4.418 3.582-8 8-8s8 3.582 8 8v10h10c4.418 0 8 3.582 8 8s-3.582 8-8 8H62c-4.418 0-8-3.582-8-8v-18zm76-8c4.418 0 8 3.582 8 8v10c0 4.418-3.582 8-8 8h-10c-4.418 0-8 3.582-8 8s3.582 8 8 8h18c4.418 0 8-3.582 8-8v-26c0-4.418-3.582-8-8-8h-8z"/>
+    <path d="M78 96c0-4.418 3.582-8 8-8h20c4.418 0 8 3.582 8 8s-3.582 8-8 8H86c-4.418 0-8-3.582-8-8z"/>
+  </g>
+  <text x="96" y="114" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif" font-size="26" text-anchor="middle" fill="#ffffff" font-weight="700">BREB</text>
+</svg>
